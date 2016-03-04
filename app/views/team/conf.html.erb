@@ -1,0 +1,83 @@
+<div class="wrapper"></div>
+<section class="container clear clearfix gray-bg">
+  <div class="cleafix">
+    <div class="col-10">
+      <!-- Side Infos -->
+      <div class="col-2">
+        <div class="user-wrapper">
+          <!-- Foto User -->
+          <div class="user-pic">
+            <img src="<%= @team.img_logo %>" alt="Foto">
+          </div>
+          <!-- Menu -->
+          <ul class="user-tools">
+            <% if @imAdmin %>
+                <li><a href="/team/edit/<%= @team.name %>"><i class="fa fa-edit"></i> Editar Perfil</a></li>
+                <li><a href="#"><i class="fa fa-cogs"></i> Configurações</a></li>
+            <% end %>
+          </ul>
+          <!-- Amigos -->
+          <div class="table-title clearfix">
+            <div class="title-wrap" style="font-size: 70%;">Membros:</div>
+          </div>
+          <div class="list-wrapper">
+            <%
+               @members.each do |member|
+            %>
+                <a href="/user/<%=member.user.nick_name%>"> <img src="<%=member.user.img_avatar%>" alt=""></a>
+            <% end %>
+            <% if @imAdmin %><a href="/busca/<%= @team.id %>"> <img src="/assets/friend-search.png" alt=""></a><% end %>
+          </div>
+          <br>
+          <!-- Historico de Times -->
+          <div class="table-title clearfix">
+            <div class="title-wrap" style="font-size: 70%;">Hitórico de campeonatos:</div>
+          </div>
+          <div class="list-wrapper">
+            <!--<img src="/assets/time-1.png" alt="">-->
+          </div>
+        </div>
+      </div>
+      <!-- User Description -->
+      <div class="col-10 user-wrapper">
+        <h1 class="caption" style="width: 287px; margin-top: 0px;">Editar</h1><br>
+
+        <% if @imAdmin %>
+        <p style="color: white;">Editar membros</p>
+          <div class="form-body">
+            <form action="/team/conf/<%= params[:team_name] %>?edit_members=true" method="POST" class="edit">
+
+              <%
+                 @members.each do |member|
+              %>
+                  <br><br> <span style="color: white;"><%=member.user.nick_name%></span> <div class="row-frm clear">
+                    <select name="select_<%=member.user.id%>"><% @team_p.each do |teamp| %><option value="<%=teamp.id%>"><%=teamp.name%></option><% end %><option value="del">Excluir membro</option></select>
+                    </div>
+              <% end %>
+
+              <div class="action-frm clear clearfix">
+                <button type="submit" class="btn green-bg">Salvar</button>
+              </div>
+            </form>
+          </div><br>
+        <% end %>
+
+        <p style="color: white;">Deletar time:</p>
+        <div class="form-body">
+          <form action="/team/conf/<%= params[:team_name] %>?delete=true" method="POST" class="edit">
+            <!--/form-row-->
+            <div class="row-frm clear">
+              <input type="password" placeholder="Repita o nome do time" name="delete_name">
+            </div>
+            <div class="action-frm clear clearfix">
+              <button type="submit" class="btn green-bg">Excluir time</button>
+            </div>
+          </form><br>
+          <!--/form-row-->
+
+        </div>
+      </div>
+    </div>
+    <%= render 'layouts/tables' unless @admin_style %>
+  </div>
+</section>

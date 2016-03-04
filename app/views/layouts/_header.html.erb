@@ -1,0 +1,290 @@
+<!-- Begin Header -->
+<header class="wrapper">
+	<div class="header">
+		<div class="logo-header"><a href="/"><img src="/assets/logo-small.png"></a></div>
+			<ul class="nav">
+	            <%
+	            	@games = Game.all
+	            	@games.each do |game|
+	            %>
+	            <li><a href="/game/<%= game.name %>"><%= game.name %></a></li>
+	            <% end %>
+				<div class="ham-menu gray-bg">
+					<img src="/assets/expand-arrow.png" onclick="toggleFullScreen()">
+				</div>
+	          	<div class="ham-menu yellow-bg">
+	          		<a href="#openMenu"><img src="/assets/ham-menu.png" data-swap="/assets/close-menu.png" data-src="/assets/ham-menu.png" id="openHideMenu" onclick="swapImage()"></a>
+	          	</div>
+			</ul>
+			<nav class="full-screen-menu clear hide" id="menu">
+				<div class="col-8">
+					<h1>
+						LIGA
+						<br>BRASILEIRA 
+						<br>DE ESPORTES 
+						<br>ELETRÔNICOS
+					</h1>
+				</div>
+				<div class="col-4">
+					<ul>
+              <li><a href="/noticias/<%=cookies[:lbee_game]%>">Notícias</a></li>
+              <hr>
+              <li><a href="/campeonatos/<%=cookies[:lbee_game]%>">Campeonatos</a></li>
+              <hr>
+              <li><a href="/videos/<%=cookies[:lbee_game]%>">Videos</a></li>
+              <hr>
+              <li><a href="/quemsomos">LBEE</a></li>
+              <hr>
+              <li><a href="/contato">Contato</a></li>
+					</ul>
+				</div>	
+			</nav>
+		</div>
+	</div>	
+</header>
+<!-- End Header -->
+
+<!-- Begin Logo / Login Section --> <!-- Take out HIDE to display block -->
+<%  if !cookies[:lbee_userHasAcess] %>
+<section class="container clear cleafix">
+	<div class="main-logo col-8">
+      <a href="/"><img src="/assets/logo-large.png"></a>
+	</div>
+
+	<div class="login login-btn left">
+		<form action="/login" method="POST">
+			<input type="text" placeholder="Username" name="nick_name">
+			<input type="password" placeholder="Password" name="password">
+			<button type="submit"><!-- <img src="/assets/double-arrow.png"> --></button>
+		</form>
+		<a href="/cadastro">cadastrar</a> <a href="/repassword">lembrar senha</a>
+	</div>
+</section>
+<%  end %>
+<!-- End Logo / Login Section -->
+
+<!-- Begin Logo / Login Section LOGGED --> <!-- ADD HIDE to display None -->
+<%
+   if cookies[:lbee_userHasAcess]
+    @currentUserW = User.find_by(:app_access_token => cookies[:lbee_userToken])
+    @messages = Message.where("friend_id = ? and read = ?",@currentUserW.id,false)
+%>
+<section class="container clear cleafix">
+	<div class="main-logo col-8">
+      <a href="/"><img src="/assets/logo-large.png"></a>
+	</div>
+
+	<div class="login login-btn left">
+		<div class="user-info-wrapper">
+ 			<h2>Olá</h2>
+			<h1><%= @currentUserW.name %> '<%= @currentUserW.nick_name %>' <%= @currentUserW.last_name %></h1>
+			<h2>Créditos: R$0,00</h2>
+			<h2>Você tem <span><%= @messages.count %></span> mensagens.</h2>
+          <a href="/user/<%= @currentUserW.nick_name %>">perfil</a> <a href="/logout">sair</a>
+		</div>
+		<img src="<%= @currentUserW.img_avatar %>">
+	</div>
+</section>
+<% end %>
+<!-- End Logo / Login Section -->
+
+<!-- Begin Secundary Nav -->
+<header class="container clear">
+	<nav class="nav sub-menu">
+		<ul>
+          <li <% if @active == "noticias" %>class="active-menu"<% end %>><a href="/noticias/<%=cookies[:lbee_game]%>">Notícias</a></li>
+          <li <% if @active == "campeonatos" %>class="active-menu"<% end %>><a href="/campeonatos/<%=cookies[:lbee_game]%>">Campeonatos</a></li>
+          <li <% if @active == "ranking" %>class="active-menu"<% end %>><a href="/ranking/<%=cookies[:lbee_game]%>">Rankings</a></li>
+          <li <% if @active == "videos" %>class="active-menu"<% end %>><a href="/videos/<%=cookies[:lbee_game]%>">Vídeos</a></li>
+          <li <% if @active == "outros" %>class="active-menu"<% end %>><a href="/outros/<%=cookies[:lbee_game]%>">Sobre</a></li>
+          <div><a href="#" id="openContatoModal" class="contato-btn green-bg"><p>Contato</p></a></div>
+		</ul>
+	</nav>
+</header>
+<!-- End Secundary Nav -->
+
+<!-- Begin Contato Modal -->
+<div class="contato-modal" id="contatoModal">
+    <i class="fa fa-times" id="closeContato"></i>
+    <h1 class="caption-news" style="width: 220px;">Contato</h1>
+    <div class="form-contato">
+    <form action="">
+      <div class="row">
+        <i class="fa fa-users"></i>
+        <input type="text" name="Nome" id="" placeholder="Nome">
+      </div>
+      <div class="row">
+        <i class="fa fa-at"></i>
+        <input type="text" name="Email" id="" placeholder="Email">
+      </div>
+      <div class="row">
+        <i class="fa"><img src="/assets/icon-nick.png" alt=""></i>
+        <input type="text" name="Nick" id="" placeholder="Nick">
+      </div>
+      <div class="row">
+        <i class="fa fa-user"></i>
+        <input type="text" name="Telefone" id="" placeholder="Telefone">
+      </div>
+      <div class="row">
+        <!--<i class="fa fa-align-left"></i>-->
+        <textarea name="Mensagem" id="" cols="30" rows="7" placeholder="Mensagem"></textarea>
+      </div>
+      <div class="row">
+        <button type="submit">
+          <i class="fa fa-long-arrow-right"></i>
+          <p>Enviar</p>
+        </button>
+      </div>
+    </form>
+    </div>
+</div>
+<div class="overlay"></div>
+<!-- End Contato Modal -->
+
+<!-- Begin Modals Notifys -->
+<% if @problems %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Atenção<br><br>&nbsp; - <%= @problems %></p>
+  </div> 
+<% end %>
+
+<% if params[:user_created] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Parabéns você está cadastro agora ative seu login atravês do e-mail e faça login novamente.</p>
+  </div> 
+<% end %>
+
+<% if params[:user_login_error] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Verifique seus dados e faça login novamente.</p>
+  </div> 
+<% end %>
+
+<% if params[:user_login] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Bem vindo!</p>
+  </div> 
+<% end %>
+
+<% if params[:user_logout] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Obrigado volte sempre !</p>
+  </div> 
+<% end %>
+
+<% if params[:user_login_inativo] == "true" %>
+    <div class="container notification-modal clear clearfix" id="drag">
+      <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+      <p>Seu usuario não está ativo, olhe já seu e-mail!</p>
+    </div> 
+<% end %>
+
+<% if params[:confirmation] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Usuario confirmado com sucesso, você já pode fazer o login</p>
+  </div> 
+<% end %>
+
+<% if params[:confirmationteam_invalid] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Este token de confirmação está invalido</p>
+  </div> 
+<% end %>
+
+<% if params[:team_invalid] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Este time não existe</p>
+  </div> 
+<% end %>
+
+<% if params[:team_deleted] == "true" %>
+    <div class="container notification-modal clear clearfix" id="drag">
+      <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+      <p>Time excluido com sucesso</p>
+    </div>
+<% end %>
+
+<% if params[:team_inactive] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Este time não está ativado, contate o administrador</p>
+  </div> 
+<% end %>
+
+<% if params[:invite_friend_invalid] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Este convite não pode ser enviado</p>
+  </div> 
+<% end %>
+
+<% if params[:invite_friend_invalid_already] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Este convite já foi enviado</p>
+  </div> 
+<% end %>
+
+<% if params[:invite_friend] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Convite enviado com sucesso</p>
+  </div> 
+<% end %>
+
+<% if params[:action_fail] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Ação não permitidas</p>
+  </div> 
+<% end %>
+
+<% if params[:invite_team] == "true" %>
+  <div class="container notification-modal clear clearfix" id="drag">
+    <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+    <p>Convite para time enviado com sucesso</p>
+  </div> 
+<% end %>
+
+<% if params[:remember_invalid] == "true" %>
+    <div class="container notification-modal clear clearfix" id="drag">
+      <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+      <p>Atenção este e-mail não existe</p>
+    </div>
+<% end %>
+
+<% if params[:remember] == "true" %>
+    <div class="container notification-modal clear clearfix" id="drag">
+      <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+      <p>Um e-mail foi enviado com instruções para alteração de senha.</p>
+    </div>
+<% end %>
+
+<% if params[:reset] == "true" %>
+    <div class="container notification-modal clear clearfix" id="drag">
+      <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+      <p>Senha alterada com sucesso você já pode fazer o login.</p>
+    </div>
+<% end %>
+
+<% if @embreve %>
+    <div class="container notification-modal clear clearfix" id="drag">
+      <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+      <p>Em breve</p>
+    </div>
+<% end %>
+
+<% if @edit_message %>
+    <div class="container notification-modal clear clearfix" id="drag">
+      <a href="#" id="closeNotify"><i class="fa fa-times"></i></a>
+      <p><%=@edit_message%></p>
+    </div>
+<% end %>

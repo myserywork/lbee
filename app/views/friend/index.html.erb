@@ -1,0 +1,40 @@
+<section class="container clear clearfix gray-bg">
+  <!-- News Itens -->
+  <div class="clearfix">
+    <div class="col-10">
+      <!-- Caption -->
+      <h1 class="caption-news" style="width: 400px;"><% if params[:type] == "amigo" %>Ache um amigo<% else %>Ache um jogador <% end %></h1>
+
+      <!-- Tirar Classe Hide Para Mensagem Aparecer -->
+      <div class="no-ranking hide">
+        <h1>Nenhum Ranking Foi divulgado.</h1>
+      </div>
+
+      <div class="form-body">
+        <form action="/busca/<%=params[:type] %>" method="POST">
+          <!--/form-row-->
+          <div class="row-frm clear">
+            <div class="label-wrap" style="width: 20%;">
+              <label for="nome">Username</label>
+            </div>
+            <input type="text" placeholder="Username" name="name"><button type="submit" class="btn green-bg" style="padding: 5px 20px;">Buscar</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- End Rankings -->
+
+      <%
+         @usersSearch.each do |member|
+      %>
+      <br>
+      <div class="user-search">
+        <a href="/user/<%=member.nick_name%>"> <img src="<%=member.img_avatar%>" alt=""> <%=member.name%> '<%=member.nick_name%>' <%=member.last_name%>
+        </a>
+      </div>
+      <% if params[:type] != "amigo" %><a href="/team/invite/<%=member.nick_name%>/<%=params[:type]%>">invite team</a><% end %>
+      <% end %> 
+    </div>
+    <%= render 'layouts/tables' unless @admin_style %>
+  </div>
+</section>

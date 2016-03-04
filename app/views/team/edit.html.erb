@@ -1,0 +1,103 @@
+<div class="wrapper"></div>
+<section class="container clear clearfix gray-bg">
+  <div class="cleafix">
+    <div class="col-10">
+      <!-- Side Infos -->
+      <div class="col-2">
+        <div class="user-wrapper">
+          <!-- Foto User -->
+          <div class="user-pic">
+            <img src="<%= @team.img_logo %>" alt="Foto">
+          </div>
+          <!-- Menu -->
+          <ul class="user-tools">
+            <% if @imAdmin %>
+                <li><a href="/team/edit/<%= @team.name %>"><i class="fa fa-edit"></i> Editar Perfil</a></li>
+                <li><a href="#"><i class="fa fa-cogs"></i> Configurações</a></li>
+            <% end %>
+          </ul>
+          <!-- Amigos -->
+          <div class="table-title clearfix">
+            <div class="title-wrap" style="font-size: 70%;">Membros:</div>
+          </div>
+          <div class="list-wrapper">
+            <%
+               @members.each do |member|
+            %>
+                <a href="/user/<%=member.user.nick_name%>"> <img src="<%=member.user.img_avatar%>" alt=""></a>
+            <% end %>
+            <% if @imAdmin %><a href="/busca/<%= @team.id %>"> <img src="/assets/friend-search.png" alt=""></a><% end %>
+          </div>
+          <br>
+          <!-- Historico de Times -->
+          <div class="table-title clearfix">
+            <div class="title-wrap" style="font-size: 70%;">Hitórico de campeonatos:</div>
+          </div>
+          <div class="list-wrapper">
+            <!--<img src="/assets/time-1.png" alt="">-->
+          </div>
+        </div>
+      </div>
+      <!-- User Description -->
+      <div class="col-10 user-wrapper">
+        <h1 class="caption" style="width: 287px; margin-top: 0px;">Editar</h1><br>
+
+        <p style="color: white;">Dados:</p>
+        <div class="form-body">
+          <form action="/team/edit/<%= params[:team_name] %>?save=true" method="POST" class="edit">
+            <div class="row-frm clear">
+              <textarea placeholder="Sobre você" name="my_resume"><%= @team.about %></textarea>
+            </div>
+            <!--/form-row-->
+            <div class="row-frm clear">
+              <img src="/assets/icon-facebook.png" alt="" style="width: 20px;height: 20px; float: left;"><input style="width: 228px;" type="text" placeholder="Facebook" name="acc_fb" value="<%= @team.acc_fb %>">
+            </div>
+            <!--/form-row-->
+            <div class="row-frm clear">
+              <img src="/assets/icon-instagram.png" alt="" style="width: 20px;height: 20px; float: left;"><input style="width: 228px;" type="text" placeholder="Instagram" name="acc_ig" value="<%= @team.acc_ig %>">
+            </div>
+            <!--/form-row-->
+            <div class="row-frm clear">
+              <img src="/assets/icon-twitter.png" alt="" style="width: 20px;height: 20px; float: left;"><input style="width: 228px;" type="text" placeholder="Twitter" name="acc_twitter" value="<%= @team.acc_twitter %>">
+            </div>
+            <!--/form-row-->
+            <div class="row-frm clear">
+              <img src="/assets/icon-youtube.png" alt="" style="width: 20px;height: 20px; float: left;"><input style="width: 228px;" type="text" placeholder="Youtube" name="acc_tube" value="<%= @team.acc_tube %>">
+            </div>
+            <!--/form-row-->
+            <div class="row-frm clear">
+              <img src="/assets/icon-twitch.png" alt="" style="width: 20px;height: 20px; float: left;"><input style="width: 228px;" type="text" placeholder="Twitch" name="acc_twitch" value="<%= @team.acc_twitch %>">
+            </div>
+            <!--/form-row-->
+            <div class="row-frm clear">
+              <img src="/assets/icon-steam.png" alt="" style="width: 20px;height: 20px; float: left;"><input style="width: 228px;" type="text" placeholder="Steam" name="acc_steam" value="<%= @team.acc_steam %>">
+            </div>
+            <div class="action-frm clear clearfix">
+              <button type="submit" class="btn green-bg">Salvar</button>
+            </div>
+          </form><br>
+
+          <p style="color: white;">Senha para entrar:</p>
+          <div class="form-body">
+            <form action="/team/edit/<%= params[:team_name] %>?save_password=true" method="POST" class="edit">
+              <div class="row-frm clear">
+                <input type="password" placeholder="Senha Atual" name="old_password">
+              </div>
+              <!--/form-row-->
+              <div class="row-frm clear">
+                <input type="password" placeholder="Nova senha" name="new_password">
+              </div>
+              <!--/form-row-->
+              <div class="action-frm clear clearfix">
+                <button type="submit" class="btn green-bg">Salvar</button>
+              </div>
+            </form>
+          </div>
+          <!--/form-row-->
+
+        </div>
+      </div>
+    </div>
+    <%= render 'layouts/tables' unless @admin_style %>
+  </div>
+</section>

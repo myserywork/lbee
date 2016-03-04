@@ -1,0 +1,17 @@
+<!-- Begin page Content -->
+<section class="container clear clearfix gray-bg">
+	<!-- News Itens -->
+	<div class="clearfix">
+		<div class="col-10">
+			<!-- Caption -->
+			<h1 class="caption-news" style="width: 220px;">Notícias</h1>
+			<div class="news-list-wrap">
+              <% @news.each do |new| %>
+                  <p><span>_ </span><a href="/noticias/todos/<%= new.id %>"><%= new.subtitle %></a></p>
+              <% end %>
+			</div>
+		</div>
+		<!-- Begin Tables -->
+		<%= render 'layouts/tables' unless @admin_style %>
+	</div>
+</section>

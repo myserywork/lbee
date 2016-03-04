@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+Olá <%= @user_to.name %>, o usuario <%= @user_from.name %> enviou um convite de amizade.<br><br>
+<p>
+  Para aceitar clique aqui https://lbee.herokuapp.com/amigo/confirmation/<%= @invite.invite_token %><br>
+</p>
+<br>Equipe LBEE
+
+<br><br>---
+<br>Este é um email automatico.
+</body>
+</html>

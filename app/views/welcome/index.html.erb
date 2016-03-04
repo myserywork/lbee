@@ -1,0 +1,46 @@
+<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+
+<!-- Begin Carousel -->
+<section class="container clear">
+  <div id="slider">
+	<i class="fa fa-arrow-right control_next"></i>
+	<i class="fa fa-arrow-left control_prev"></i>
+	<ul>
+	  <li><img src="/assets/banner1.png" alt="Banner1"/></li>
+	  <li><img src="/assets/banner2.png" alt="Banner2"/></li>
+	  <li><img src="/assets/banner3.png" alt="Banner3"/></li>
+	</ul>
+  </div>
+</section>
+<!-- End Carousel -->
+
+<div class="container yellow-bg" style="height:9px;"></div>
+
+<!-- Begin Main Section -->
+<section class="container clear clearfix gray-bg">
+	<!-- Video Spotlight -->
+	<div class="col-3 video-wrapper">
+		<h1 class="caption" style="width: 250px;">DESTAQUE</h1>
+
+		<div width="450" height="305" id="twitch_embed_player"></div>
+      <iframe src="http://www.twitch.tv/ligalbee/chat?popout=" frameborder="0" scrolling="no" height="500" width="350"></iframe>
+      <!--<div class="playlist-body">
+          <div class="row">
+              <a href="#" class="play-btn active"><i class="fa fa-pause"> </i></a>
+              <div class="video-decription">
+                  <p>LBEE Channel</p>
+              </div>
+              <div class="video-lenght">
+                  <p>live</p>
+              </div>
+			</div>-->
+			<!--/row-->
+
+		</div>
+	</div>
+	<!-- Begin Tables -->
+	<%= render 'layouts/tables' unless @admin_style %>
+</section><!-- End Main Section -->

@@ -1,0 +1,20 @@
+<div class="container clear clearfix gray-bg">
+  <h1 class="caption-news" style="width: 230px; font-size: 3em;">Senha</h1>
+  <div class="col-10" style="position: relative; top: 30px;">
+    <div class="form-body">
+      <form action="/repassword?create=true" method="POST">
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">E-mail</label>
+          </div>
+          <input type="text" placeholder="E-mail" name="email">
+        </div>
+        <!--/form-row-->
+        <div class="action-frm clear clearfix">
+          <button type="submit" class="btn green-bg">Confirmar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <%= render 'layouts/tables' unless @admin_style %>
+</div>

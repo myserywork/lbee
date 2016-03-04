@@ -1,0 +1,64 @@
+<div class="container clear clearfix gray-bg">
+  <h1 class="caption-news" style="width: 431px; font-size: 3em; height: 700px;">Cadastro de Times</h1>
+  <div class="col-10" style="position: relative; top: 30px;">
+    <div class="form-body">
+      <form action="/cadastro_time?create=true" method="POST">
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Nome do time</label>
+          </div>
+          <input type="text" placeholder="Nome do time..." name="name">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Imagem de Perfil</label>
+          </div>
+          <input type="text" placeholder="Url" name="imgurl">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Site do time</label>
+          </div>
+          <input type="text" placeholder="Site do time..." name="website">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Senha para entrar</label>
+          </div>
+          <input type="password" placeholder="Senha para entrar..." name="password">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Sobre o time</label>
+          </div>
+          <textarea name="about" id="" cols="10" rows="5"></textarea>
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Jogo</label>
+          </div>
+          <select id="" name="game">
+            <%
+               @games = Game.all
+               @games.each do |game|
+            %>
+                <option value="<%= game.id %>"><%= game.name %></option>
+            <% end %>
+          </select>
+          <div class="g-recaptcha" data-sitekey="6Lf-nAcTAAAAAJtZGW3wtOFOoI6FQe7C0-HY1Rj-" style="margin-left: 130px;"></div>
+        </div>
+        <!--/form-row-->
+        <div class="action-frm clear clearfix">
+          <button type="submit" class="btn green-bg">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <%= render 'layouts/tables' unless @admin_style %>
+</div>

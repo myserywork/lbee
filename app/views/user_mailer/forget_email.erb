@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+
+Olá <%= @user.name %> "<%= @user.nick_name %>" <%= @user.last_name %>,<br>
+
+<br><br>Sua senha já pode ser alterada!
+
+<br>Para alterar sua senha clique aqui ou acesse o link -> https://lbee.herokuapp.com/user/forget/<%= @user.token_reset_confirmation %>
+
+<br>Atenciosamente,
+
+<br>Equipe LBEE
+
+<br><br>---
+<br>Este é um email automatico.
+
+</body>
+</html>

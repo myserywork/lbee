@@ -1,0 +1,85 @@
+<div class="wrapper"></div>
+<section class="container clear clearfix gray-bg">
+  <div class="clearfix">
+    <div class="col-10">
+      <!-- Side Infos -->
+      <div class="col-2">
+        <div class="user-wrapper">
+          <!-- Foto User -->
+          <div class="user-pic">
+            <img src="<%= @user.img_avatar %>" alt="Foto">
+          </div>
+          <!-- Menu -->
+          <% if @itsMe %>
+              <ul class="user-tools">
+                <li><a href="/edit"><i class="fa fa-edit"></i> Editar Perfil</a></li>
+                <li><a href="/myteam"><i class="fa fa-shield"></i> Meus Times</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i> Mensagens</a></li>
+              </ul>
+          <% else %>
+              <% if cookies[:lbee_userHasAcess] %>
+                  <ul class="user-tools">
+                    <%
+                       @pre_invite = FriendInvite.where("user_id = ? and friend_id = ?",@currentUserA.id,@user.id)
+                       @pre_invite1 = Friend.where("user_id = ? and friend_id = ?",@currentUserA.id,@user.id)
+                       @pre_invite2 = Friend.where("friend_id = ? and user_id = ?",@currentUserA.id,@user.id)
+                       if @pre_invite.count > 0 || @pre_invite1.count > 0 || @pre_invite2.count > 0
+                       else
+                    %>
+                        <li><a href="/invite/<%= @user.id %>"><i class="fa fa-cogs"></i> Enviar convite de amizade</a></li>
+                    <% end %>
+                    <li><a href="#"><i class="fa fa-envelope"></i> Mensagens</a></li>
+                    <li><a href="#"><i class="fa fa-cogs"></i> Denunciar este usuario</a></li>
+                  </ul>
+              <% end %>
+          <% end %>
+
+          <!-- Amigos -->
+          <div class="table-title clearfix">
+            <div class="title-wrap" style="font-size: 70%;">Amigos:</div>
+          </div>
+          <div class="list-wrapper">
+            <%
+               @friends.each do |friend|
+                 if @user.id == friend.friend_id
+                   f1 = User.find_by_id(friend.user_id)
+                 else
+                   f1 = User.find_by_id(friend.friend_id)
+                 end
+            %>
+                <a href="/user/<%= f1.nick_name %>"> <img src="<%= f1.img_avatar %>" alt=""></a>
+            <% end %>
+            <% if @itsMe %><a href="/busca/amigo"><i class="fa fa-search" id="icon-fr"></i></a><% end %>
+          </div>
+          <br>
+          <!-- Historico de Times -->
+          <div class="table-title clearfix">
+            <div class="title-wrap" style="font-size: 70%;">Times:</div>
+          </div>
+          <div class="list-wrapper">
+            <%
+               @user.team_members.each do |member|
+            %>
+                <a href="/team/<%=member.team.name%>"> <img src="<%=member.team.img_logo%>" alt=""></a>
+            <% end %>
+            <% if @itsMe %><a href="/cadastro_time"><i class="fa fa-plus" id="icon-fr"></i></a><% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 user-wrapper">
+        <h1 class="caption" style="width: 287px; margin-top: 0px;">Times</h1><br>
+
+        <div class="form-body">
+          <% if @itsMe %><a href="/cadastro_time"><i class="fa fa-plus" id="icon-fr" style="width: 120px;height: 120px;"></i></a><% end %>
+          <%
+             @user.team_members.each do |member|
+          %>
+              <a href="/team/<%=member.team.name%>"> <img src="<%=member.team.img_logo%>" alt="" style="width: 120px;height: 120px;"></a>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+    <%= render 'layouts/tables' unless @admin_style %>
+  </div>
+</section>

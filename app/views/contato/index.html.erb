@@ -1,0 +1,307 @@
+<section class="container clear clearfix gray-bg">
+	<div class="clearfix">
+		<div class="col-10">
+			<!-- Caption -->
+			<h1 class="caption-news" style="width: 220px;">Contato</h1>
+			<div class="form-contato">
+				<form action="">
+					<div class="row">
+						<i class="fa fa-users"></i>
+						<input type="text" name="Nome" id="" placeholder="Nome">
+					</div>
+					<div class="row">
+						<i class="fa fa-at"></i>
+						<input type="text" name="Email" id="" placeholder="Email">
+					</div>
+					<div class="row">
+						<i class="fa"><img src="/assets/icon-nick.png" alt=""></i>
+						<input type="text" name="Nick" id="" placeholder="Nick">
+					</div>
+					<div class="row">
+						<i class="fa fa-user"></i>
+						<input type="text" name="Telefone" id="" placeholder="Telefone">
+					</div>
+					<div class="row">
+						<!--<i class="fa fa-align-left"></i>-->
+						<textarea name="Mensagem" id="" cols="30" rows="7" placeholder="Mensagem"></textarea>
+					</div>
+					<div class="row">
+						<button type="submit">
+							<i class="fa fa-long-arrow-right"></i>
+							<p>Enviar</p>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- Rankings -->
+		<div class="table-wrapper">
+			<div class="table-body">
+				<!-- Begin Tabs -->
+				<div class="table-tabs">
+					<ul class="tabs hide">
+						<li><a href="#dotaTab" class="active">Dota</a></li>
+						<li><a href="#lolTab">League of Legends</a></li>
+						<li><a href="#csgoTab">CS:GO</a></li>
+					</ul>					
+				</div>
+				<!-- End Tabs -->
+				<table class="table" id="dotaTab">
+	              <% if session.key? :current_user %>
+	                  <h3>Current user:</h3>
+	                  <%= image_tag session[:current_user][:image] %>
+	                  <p><%= session[:current_user][:nickname] %></p>
+	                  <p><%= session[:current_user][:uid] %></p>
+	              <% end %>
+	              <div class="hide"><%= link_to image_tag("http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_noborder.png"), '/auth/steam' %></div>
+	              	<!--<thead>
+						<th colspan="4">Partidas</th>
+					</thead>-->
+					<div class="table-title clearfix">
+						<div class="title-wrap">Partidas</div>
+						<a href="#"><i class="fa fa-bars"></i></a>
+						<a href="#"><i class="fa fa-cogs"></i></a>
+					</div>
+					<tbody>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>live <i class="fa fa-play redish"></i> <span class="redish">2</span></td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>postp</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>4H 30M <i class="fa fa-play grayish"></i> <span class="grayish">1</span></td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>3:1</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>3:1</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>3:1</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>3:1</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>3:1</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>3:1</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>3:1</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>vs.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>3:1</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- End Partidas Table -->
+			</div>
+			<div class="table-body-liga">
+				<!-- Begin Sua Liga Table -->
+				<table class="table" id="dotaTab">
+	              <% if session.key? :current_user %>
+	                  <h3>Current user:</h3>
+	                  <%= image_tag session[:current_user][:image] %>
+	                  <p><%= session[:current_user][:nickname] %></p>
+	                  <p><%= session[:current_user][:uid] %></p>
+	              <% end %>
+	              <div class="hide"><%= link_to image_tag("http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_noborder.png"), '/auth/steam' %></div>
+	              	<!--<thead>
+						<th colspan="4">Sua Liga</th>
+					</thead>-->
+					<div class="table-title dropdown clearfix">
+						<div class="title-wrap">Sua Liga</div>
+						<a href="#"><i class="fa fa-bars"></i></a>
+						<a href="#"><i class="fa fa-cogs"></i></a>
+					</div>
+					<div class="table-description">
+						<small>You Play In: Liga Brasileira de Esportes Eletrônicos</small>
+					</div>
+					<tr class="liga-thead">
+						<td>#</td>
+						<td>Time</td>
+						<td>ML</td>
+					</tr>
+					<tbody>
+						<tr>
+							<td>1.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>5/1</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>5/1</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>5/1</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>5/1</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>5/1</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>5/1</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>5/1</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>5/1</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>
+								<img src="/assets/br_flag" alt="Brasil">
+								Vega
+							</td>
+							<td>5/1</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- End Sua liga Table -->
+			</div>	
+		</div><!-- End Rankings -->
+	</div>	
+</section>

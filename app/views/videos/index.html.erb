@@ -1,0 +1,36 @@
+<script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- Begin Main Section -->
+<section class="container clear clearfix gray-bg">
+	<!-- Video Spotlight -->
+	<div class="col-3 video-wrapper">
+		<h1 class="caption" style="width: 175px;">Vídeos</h1>
+		<iframe src="https://www.youtube.com/embed/UjZYMI1zB9s" frameborder="0" name="tubet" allowfullscreen></iframe>
+		<div class="playlist-body">
+          <div class="row">
+            <a href="https://www.youtube.com/embed/UjZYMI1zB9s" target="tubet" class="play-btn"><i class="fa fa-play"> </i></a>
+            <div class="video-decription">
+              <p>Free to Play: The Movie (US)</p>
+            </div>
+            <div class="video-lenght">
+              <p>EN</p>
+            </div>
+          </div>
+          <!--/row-->
+          <div class="row">
+            <a href="https://www.youtube.com/embed/fmI_Ndrxy14" target="tubet" class="play-btn"><i class="fa fa-play"> </i></a>
+            <div class="video-decription">
+              <p>Warriors 2014 World Champ.</p>
+            </div>
+            <div class="video-lenght">
+              <p>EN</p>
+            </div>
+          </div>
+          <!--/row-->
+
+		</div>
+	</div>
+	<!-- Begin Tables -->
+	<%= render 'layouts/tables' unless @admin_style %>
+</section><!-- End Main Section -->

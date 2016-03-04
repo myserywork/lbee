@@ -1,0 +1,68 @@
+<section class="container clear clearfix gray-bg">
+	<!-- News Itens -->
+	<div class="clearfix">
+		<div class="col-10">
+			<!-- Caption -->
+			<h1 class="caption-news" style="width: 247px;">Rankings</h1>
+			
+			<!-- Tirar Classe Hide Para Mensagem Aparecer -->
+			<div class="no-ranking hide">
+				<h1>Nenhum Ranking Foi divulgado.</h1>
+			</div>
+
+			<div class="game-list">
+				<ul>
+                  <% @games.each do |game| %>
+                      <li <% if params[:game] == game.name %>class="active"<% end %>><a href="/ranking/<%= game.name%>"><%= game.name%></a></li>
+                  <% end %>
+				</ul>
+			</div>
+			<div class="table-wrapper" style="border: 0;">
+				<div class="table-body">
+					<!-- Begin Tabs -->
+					<div class="table-tabs">
+						<ul class="tabs hide">
+							<li><a href="#dotaTab" class="active">Dota</a></li>
+							<li><a href="#lolTab">League of Legends</a></li>
+							<li><a href="#csgoTab">CS:GO</a></li>
+						</ul>					
+					</div>
+					<!-- End Tabs -->
+					<table class="table" id="dotaTab">
+			          <div class="hide"><%= link_to image_tag("http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_noborder.png"), '/auth/steam' %></div>
+			          	<!--<thead>
+							<th colspan="4">Partidas</th>
+						</thead>-->
+						<thead>
+							<tr>
+								<td colspan="3">Colocação / Time</td>
+								<td>PTS.</td>
+							</tr>
+						</thead>
+						<tbody class="ranking-table">
+							<!--<tr class="first-guy">
+								<td colspan="3">
+									<span>1.</span>
+									<img src="/assets/br_flag" alt="Brasil">
+									<span>Nabuseco</span>
+								</td>
+								<td><span>1.500</span> <h6>pts.</h6></td>
+							</tr>-->
+                            <% @teams.each do |team| %>
+							<tr>
+								<td colspan="3">
+									<span id="position">1.</span>
+									<img src="/assets/br_flag" alt="Brasil">
+									<%= team.name %>
+								</td>
+								<td><span>0</span> <h6>pts.</h6></td>
+							</tr>
+                            <% end %>
+						</tbody>
+					</table><!-- End Partidas Table -->
+				</div><!-- End Table Body -->
+			</div><!-- End Rankings -->
+		</div>
+		<%= render 'layouts/tables' unless @admin_style %>
+	</div>
+</section>

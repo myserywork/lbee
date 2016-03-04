@@ -1,0 +1,99 @@
+<div class="container clear clearfix gray-bg">
+  <h1 class="caption-news" style="width: 230px; font-size: 3em;">Cadastro</h1>
+  <div class="col-10" style="position: relative; top: 30px; height: 700px;">
+    <div class="form-body">
+      <form action="/cadastro?create=true" method="POST">
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Username</label>
+          </div>
+          <input type="text" placeholder="Username" name="nick_name">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Nome</label>
+          </div>
+          <input type="text" placeholder="Nome..." name="name">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Sobrenome</label>
+          </div>
+          <input type="text" placeholder="Sobrenome" name="lastname">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">País</label>
+          </div>
+          <select id="country" name="country"><option value = "pt_BR">Brazil</option><option value = "en_US">U.S.A</option><option value = "en_GB">UK</option></select>
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Data de nascimento</label>
+          </div>
+          <input type="text" placeholder="00/00/0000" name="birthdate">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Email</label>
+          </div>
+          <input type="text" placeholder="E-mail" name="email">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Confirma Email</label>
+          </div>
+          <input type="text" placeholder="Confirma E-mail">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Imagem de Perfil</label>
+          </div>
+          <input type="text" placeholder="Url" name="imgurl">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Senha</label>
+          </div>
+          <input type="password" placeholder="Senha para entrar..." name="password">
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Sobre você</label>
+          </div>
+          <textarea id="" cols="10" rows="2" name="my_resume"></textarea>
+        </div>
+        <!--/form-row-->
+        <div class="row-frm clear">
+          <div class="label-wrap">
+            <label for="nome">Jogo Principal</label>
+          </div>
+          <select id="" name="primary_game">
+            <%
+               @games = Game.all
+               @games.each do |game|
+            %>
+                <option value="<%= game.id %>"><%= game.name %></option>
+            <% end %>
+          </select>
+          <div class="g-recaptcha" data-sitekey="6Lf-nAcTAAAAAJtZGW3wtOFOoI6FQe7C0-HY1Rj-" style="margin-left: 130px;"></div>
+        </div>
+        <!--/form-row-->
+        <div class="action-frm clear clearfix">
+          <button type="submit" class="btn green-bg">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <%= render 'layouts/tables' unless @admin_style %>
+</div>

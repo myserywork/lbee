@@ -1,0 +1,50 @@
+<footer class="container">
+	<div class="footer">
+		<h2>Acesse nossas redes sociais</h2>
+		<ul>
+			<!--<li><a href="#"><span class="icon-facebook3"></span></a></li>
+			<li><a href="#"><span class="icon-instagram"></span></a></li>
+			<li><a href="#"><span class="icon-twitter3"></span></a></li>
+			<li><a href="#"><span class="icon-youtube3"></span></a></li>-->
+          <li><a href="http://facebook.com/LigaLBEE"><span class="icon-facebook3"></span></a></li>
+          <li><a href="http://twitter.com/LigaLBEE"><span class="icon-twitter3"></span></a></li>
+          <li><a href="https://www.youtube.com/channel/UCd9wPDgI5QwGGfrjqPxEWUA"><span class="icon-youtube3"></span></a></li>
+		</ul>
+		<h6>Todos os direitos reservados - 2015</h6>	
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	// Full Screen Menu
+	$(document).ready(function () {
+		$("#menu").hide();
+		$("#openHideMenu").click(function(){
+			$("#menu").fadeToggle(150);
+		});
+		$(document).keyup(function(ev){
+			if(ev.keyCode == 27)
+				$("#menu").hide();
+		});
+
+		function swapImage (){
+			var swapImage = $('#openHideMenu').attr('data-swap'),
+					currentImage = $('#openHideMenu').attr('src');
+
+			$('#openHideMenu').attr({
+				'src': swapImage,
+				'data-swap': currentImage
+			});
+		};
+	});
+</script>
+<script type="text/javascript" charset="utf-8">
+	// Table popUps
+	$(document).ready(function(){
+		$("#popUpBar").click(function () {
+			$(".bars-popup").toggle();
+		});
+		$("#popUpCog").click(function () {
+			$(".cogs-popup").toggle();
+		});
+	});
+</script>

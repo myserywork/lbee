@@ -1,0 +1,79 @@
+<!-- Begin Header -->
+<header class="wrapper">
+	<div class="header">
+		<div class="logo-header"><a href="/"><img src="/assets/logo-small.png"></a></div>
+			<ul class="nav">
+	            <%
+	            	@games = Game.all
+	            	@games.each do |game|
+	            %>
+	            <li><a href="/game/<%= game.name %>"><%= game.name %></a></li>
+	            <% end %>
+				<div class="ham-menu gray-bg">
+					<img src="/assets/expand-arrow.png">
+				</div>
+	          	<div class="ham-menu yellow-bg">
+	          		<a href="#openMenu"><img src="/assets/ham-menu.png" data-swap="/assets/close-menu.png" data-src="/assets/ham-menu.png" id="openHideMenu" onclick="swapImage()"></a>
+	          	</div>
+			</ul>
+			<nav class="full-screen-menu clear hide" id="menu">
+				<div class="col-8">
+					<h1>
+						LIGA
+						<br>BRASILEIRA 
+						<br>DE ESPORTES 
+						<br>ELETRÔNICOS
+					</h1>
+				</div>
+				<div class="col-4">
+					<ul>
+	                  <li><a href="/noticias/<%=params[:jogo]%>">Notícias</a></li>
+	                  <hr>
+	                  <li><a href="/campeonatos/<%=params[:jogo]%>">Campeonatos</a></li>
+	                  <hr>
+	                  <li><a href="/videos/<%=params[:jogo]%>">Videos</a></li>
+	                  <hr>
+	                  <li><a href="/quemsomos">LBEE</a></li>
+	                  <hr>
+	                  <li><a href="/contato">Contato</a></li>
+					</ul>
+				</div>	
+			</nav>
+		</div>
+	</div>	
+</header>
+<!-- End Header -->
+
+<!-- Begin Logo / Login Section -->
+<section class="container clear cleafix">
+	<div class="main-logo col-8">
+      <a href="/"><img src="/assets/logo-large.png"></a>
+	</div>
+
+	<div class="login login-btn left">
+		<div class="user-info-wrapper">
+ 			<h2>Olá</h2>
+			<h1>Lucaz 'Wodka' Luz</h1>
+			<h2>Créditos: R$10,00</h2>
+			<h2>Você tem <span>2</span> mensagens.</h2>
+			<a href="/user/cadastro">sair</a>
+		</div>
+		<img src="/assets/user-pic.png">
+	</div>
+</section>
+<!-- End Logo / Login Section -->
+
+<!-- Begin Secundary Nav -->
+<header class="container clear">
+	<nav class="nav sub-menu">
+		<ul>
+          <li class="active-menu"><a href="/noticias/<%=params[:jogo]%>">Notícias</a></li>
+          <li><a href="/campeonatos/<%=params[:jogo]%>">Campeonatos</a></li>
+          <li><a href="/ranking/<%=params[:jogo]%>">Rankings</a></li>
+          <li><a href="/videos/<%=params[:jogo]%>">Vídeos</a></li>
+          <li><a href="/outros/<%=params[:jogo]%>">Sobre</a></li>
+          <div><a href="/contato" class="contato-btn green-bg"><p>Contato</p></a></div>
+		</ul>
+	</nav>
+</header>
+<!-- End Secundary Nav -->

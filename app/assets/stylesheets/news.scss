@@ -1,0 +1,159 @@
+// Place all the styles related to the news controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// News
+.caption-news {
+	font-size: 3.5em;
+	margin: 20px 30px;
+	padding: 10px;
+	background-color: #ffe33c;
+}
+
+.caption {
+	font-size: 3.5em;
+	margin: 10px 0;
+	padding: 10px;
+	background-color: #ffe33c;
+}
+
+.caption-subtitle {
+	text-align: center;
+	h2 {
+		font-size: 2.5em;
+		margin: 10px 0;
+		padding: 10px;
+		color: #ffe33c;
+	}
+
+	h3 {
+		font-family: sans-serif;
+		color: #efefef;
+		font-size: 0.8em;
+	}
+
+	img {
+		padding: 20px;
+		max-width: 450px;
+	}
+
+	p {
+		font-family: sans-serif;
+		color: #efefef;
+		font-size: 0.6em;
+		padding: 0 42px;
+		text-align: left;
+		line-height: 150%;
+	}
+}
+
+.center {
+	text-align: center;
+}
+
+.news-list-wrap {
+	font-family: sans-serif;
+	color: white;
+	margin: 10px 30px;
+
+	p {
+		font-size: 1em;
+
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		span {
+			color: #ffe33c;
+			font-size: 2em;
+		}
+	}
+}
+
+aside {
+	p {
+		font-family: sans-serif;
+		padding: 8px 1px;
+		font-weight: 700;
+		border-bottom: 1px dotted #ccc;
+		line-height: 110%;
+		font-size: 90%;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		a.active {
+			text-decoration: underline;
+		}
+	}
+
+	div.news-header {
+		width: 25%;
+		float: left;
+		display: block;
+	}
+}
+
+.news-main {
+	float: left;
+	width: 74.9%;
+	display: block;
+	border-left: 1px dotted #ccc;
+	margin: -19px 0 0 0;
+	padding: 25px 0 0 0;
+
+	h1 {
+		font-family: 'greatlakesnfregular';
+		font-size: 1.5em;
+		text-align: center;
+		margin: auto;
+	}
+
+	h2 {
+		font-family: sans-serif;
+		line-height: 120%;
+		font-size: 90%;
+		margin: 20px auto 0;
+		text-align: center;
+	}
+
+	h3 {
+		padding: 20px;
+		font-family: sans-serif;
+		line-height: 150%;
+		font-size: 75%;
+
+		p {
+			margin: 10px 0;
+		}
+	}
+}
+
+.news-img {
+	display: block;
+	margin: 10px auto;
+	width: 74.9%;
+
+	img {
+		width: 600px;
+		height: 350px;
+	}
+}
+
+.back-arrow {
+	font-size: 2em;
+	color: #ffe33c;
+	position: absolute;
+	margin: 10px 0 0 30px;
+}
